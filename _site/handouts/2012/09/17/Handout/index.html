@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Getting Started Todo App Part 1 |  JavascriptU</title>
+        <link rel="stylesheet" href="/assets/css/bootstrap.css" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <!-- Custom Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css">
+
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='/js/vendor/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+            }
+        </script>
+        <script type="text/javascript" src="/js/script.js"></script>
+    </head>
+	<body>
+    <div id='header'>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/">JavascriptU</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="/blogs"><i class="icon-edit icon-white"></i>  Blogs</a></li>
+                            <li><a href="/handouts"><i class="icon-file icon-white"></i>  Handouts</a></li>
+                            <li><a href="/slides"><i class="icon-film icon-white"></i> Slide Decks</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id='main'> <div class="container" id="handout">
+    <div class="row">
+        <h1>Getting Started Todo App Part 1</h1>
+
+        
+            <i class="icon-file"></i>
+        
+        <span class="date">17 Sep 2012</span>
+        <div class="entry"><h3 id='when_starting_a_new_project_what_do_you_think_of_first_where_do_you_begin'>When starting a new project, what do you think of first? Where do you begin?</h3>
+
+<p>Lets start by creating a project root directory. <code>/</code></p>
+
+<ul>
+<li>Now that we have a project what now? (we&#8217;ll talk about directory structure in a bit)</li>
+</ul>
+
+<p>Lets create the index &#8211;&gt; <code>index.html</code> Now add the HTML5 doctype and base markup</p>
+
+<p><code>&lt;!DOCTYPE html&gt;</code></p>
+
+<pre><code>&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;Hello World!&lt;/body&gt;
+&lt;/html&gt;`</code></pre>
+
+<p>Open the file and you should see a <em>Hello World!</em></p>
+
+<p>Now we will be building our application with RequireJS, an AMD loader. Allowing us to split our project up into manageable pieces. (http://requirejs.org/)</p>
+
+<h3 id='how_do_we_include_requirejs_into_our_project'>How do we include RequireJS into our project?</h3>
+
+<h3 id='where_do_we_place_the_requirejs_library'>Where do we place the RequireJS library?</h3>
+
+<p>Since we aren&#8217;t looking to maintain this library lets let the vendor do that. Create a vendor directory in the root of your project and place RequireJS inside. &#8211;&gt; /vendor This is where all of your 3rd party libraries should reside, keeping it clear what to maintain</p>
+
+<p>Along with RequireJS you will need a <code>main.js</code> config file, lets create this and place it in a /js directory</p>
+
+<p>This main.js file will define the application (http://requirejs.org/docs/api.html)</p>
+
+<p>Heres a base main.js</p>
+<pre>
+  <code>
+    require.config({
+      paths : {
+        underscore : 'vendor/underscore',
+        backbone   : 'vendor/backbone',
+        marionette : 'vendor/backbone.marionette',
+        jquery     : 'vendor/jquery'
+      },
+      shim  : {
+        underscore : {
+          exports : '_'
+        },
+        backbone   : {
+          exports : 'Backbone',
+          deps    : ['jquery', 'underscore']
+        },
+        marionette : {
+          exports : 'Backbone',
+          deps    : ['backbone']
+        }
+      },
+      deps  : ['jquery', 'underscore']
+    });
+  </code>
+</pre>
+<h3 id='now_how_do_we_link_requirejs_and_its_config'>Now how do we link requireJS and its config?</h3>
+
+<p>Easy, place <code>&lt;script data-main=&quot;js/main&quot; src=&quot;vendor/require.js&quot;&gt;&lt;/script&gt;</code> in the head of your <code>index.html</code></p>
+
+<ul>
+<li>
+<p>Lets grab all the other essential pieces of our application and place then in /vendor as well, right?</p>
+
+<ul>
+<li>
+<p><strong>Underscore</strong> (&#8216;a utility-belt library for JavaScript that provides a lot of the functional programming support that you would expect in Prototype.js (or Ruby), but without extending any of the built-in JavaScript objects.&#8217; - https://github.com/documentcloud/underscore)</p>
+</li>
+
+<li>
+<p><strong>Backbone</strong> (&#8216;Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.&#8217; - http://backbonejs.org/)</p>
+</li>
+
+<li>
+<p><strong>Backbone.Marionette</strong> -&#8216;a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications.&#8217; - https://github.com/derickbailey/backbone.marionette)</p>
+</li>
+
+<li>
+<p><strong>Jasmine</strong> -(&#8216;a behavior-driven development framework for testing JavaScript code.&#8217; -http://pivotal.github.com/jasmine/)</p>
+</li>
+
+<li>
+<p><strong>jQuery</strong> -(&#8216;a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions&#8217; - http://jquery.com)</p>
+</li>
+
+<li>
+<p><strong>RequireJS</strong> -(&#8216;a javaScript file and module loader&#8217; - http://requirejs.org/)</p>
+</li>
+
+<li>
+<p><strong>Sass</strong> -(&#8216;makes CSS fun again. Sass is an extension of CSS3, adding nested rules, variables, mixins, selector inheritance, and more. - http://sass-lang.com/)</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id='alternative_method_with_bower'>Alternative Method With Bower</h2>
+
+<p>Create a component.json at the root of your project</p>
+<pre>
+<code>
+{
+  "name"         : "Handout Example",
+  "version"      : "1.0.0",
+  "main"         : ["./path/to/app.js"], //not sure yet
+  "dependencies" : {
+    "jquery"     : "~1.8.1",
+    "underscore" : "~1.3.3",
+    "requirejs"  : "~2.0.6",
+    "bootstrap"  : "~1.0.0",
+    "backbone"   : "*", //update
+    "marionette" : "*" //update
+  }
+}
+</code>
+</pre>
+<p><code>git://github.com/marionettejs/backbone.marionette.git</code></p>
+
+<p><code>$ bower install</code></p>
+
+<h3 id='today_we_will_be_building_an_amd_client_side_mv_project_what_does_all_those_letters_mean'>Today we will be building an <strong>AMD</strong> client side <strong>MV</strong>* project. What does all those letters mean?</h3>
+
+<p>&gt;&#8221;The Asynchronous Module Definition (AMD) API specifies a mechanism for defining modules such that the module and its dependencies can be asynchronously loaded. This is particularly well suited for the browser environment where synchronous loading of modules incurs performance, usability, debugging, and cross-domain access problems.&#8221; -amdjs</p>
+
+<p>If you have ever worked with Javascript before and realized you have a few thousand line file that is difficult to maintain, AMD allows you to break your application into tiny little parts and piece them back together again. Modularity is KEY.</p>
+
+<h3 id='what_about_mv_what_is_that'>What about MV<em>, what is that?</em></h3>
+
+<p>You may have heard or already know of MVC, a popular design pattern helping improve application organization</p>
+
+<p>MVC is made up of three core components:</p>
+
+<pre><code>Model -  Deals with the data for the application
+View - Views are the visual representation of these models
+Controller - the controller of the view / model</code></pre>
+
+<p>In this application we view it more as a MV* pattern. In Backbone there aren&#8217;t any true controllers, so it&#8217;s more closely related to a MVP or MVVM setup, but its not really. Confusing right? Lets just leave it as a <em>, it&#8217;s own kind of special sauce.</em></p>
+
+<p>Alright back to the setup, Now that you have a brief understanding of MV* and AMD</p>
+
+<h3 id='what_are_the_components_of_the_todo_application'>What are the components of the todo application?</h3>
+
+<ul>
+<li>a todo model</li>
+
+<li>a todo collection</li>
+</ul>
+
+<h3 id='where_do_we_put_these'>Where do we put these?</h3>
+
+<p>We don&#8217;t want to clutter up the scripts directory, maybe a models directory and a collections directory?</p>
+
+<p>Create a <code>TodoModel.js</code> in the models directory and a <code>TodoCollection.js</code> in the collections directory</p>
+
+<h3 id='now_we_have_the_todo_model_and_the_collection_of_these_models_how_do_we__them'>Now we have the todo model and the collection of these models, how do we <code>view</code> them?</h3>
+
+<p>We need a view.</p>
+
+<ul>
+<li>
+<p>Where should we put them? - maybe a views directory?</p>
+</li>
+
+<li>
+<p>We don&#8217;t want HTML in the view itself, that seems like it should be separate? - a template?</p>
+</li>
+
+<li>
+<p>Where do we put this template, how do we load it into our application?</p>
+</li>
+</ul>
+
+<p>Lets create a /templates directory in the root of the application for starters</p>
+
+<p>Loading the template can happen in a variety of ways, ajax being the transport method. In today&#8217;s application we will be using a template loader that creates a re-usable function executable with data. We will get more into this later.</p>
+
+<h3 id='what_about_routing'>What about Routing?</h3>
+
+<p>You will need a controller for your application routing. This will control which sections of your page get rendered on each hash change.</p>
+
+<p>Lets create a <code>Router.js</code> in <code>/js</code></p>
+
+<h3 id='what_about_our_main_application'>What about our main Application?</h3>
+
+<p>A main application file serves as an entry point into our application. We define our application initializers and attach our application specific config (defined in its own module) /js/config.js.</p>
+
+<p>Lets create this <code>app.js</code> in <code>/js</code></p>
+
+<h3 id='what_about_styling'>What about Styling?</h3>
+
+<p>Styling should be done in a programmatic way, plain &#8216;ol css doesn&#8217;t cut it anymore. Separation of variables from schematic layout, the ability to nest your markup and runnable functions in css, all done with the power of Sass.</p>
+
+<p>In order to <code>watch</code> your code you will need to install Sass (We will later explain grunt and set up a sass grunt task)</p>
+
+<p><code>gem install sass</code></p>
+
+<p>While actively changing your .sass files, you will want to watch the main sass file.</p>
+
+<p>We will want to create this <code>main.scss</code> in /css</p>
+
+<h3 id='now_how_do_i_get_this_sass_file_loaded_when_the_index_is_called'>Now how do I get this sass file loaded when the index is called?</h3>
+
+<p>well you will have to run <code>sass --watch main.scss:main.css</code></p>
+
+<p>This will create a main.css file for you to include while you are there throw in bootstrap.css as well. <code>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/main.css&quot;&gt;
+</code><code></code></p>
+
+<p>Now you should be able to write structured organized css and separate the components into their own file. If you @include all the .scss files in your main.scss then they will all be concatenated into your main.css.</p>
+
+<h3 id='what_about_testing'>What about Testing?</h3>
+
+<p>You may want to check out jasmine and also check out jasmine-specrunner</p>
+
+<h3 id='what_about_a_build_step'>What about a build step?</h3>
+
+<p>You may want to check out grunt at (http://gruntjs.com/) get yourself familiar with running a grunt task such as lint or min or even watching your sass files</p>
+<hr />
+<h2 id='directory_structure'>Directory Structure</h2>
+
+<pre><code>  .
+  |-- grunt.js
+  |-- README.md
+  |-- README.md
+  |-- LICENSE.md
+  |
+  |--  assets
+  |   |-- ico
+  |   |-- img
+  |-- public
+      |-- index.html
+      |-- doc
+      |-- js
+      |   |-- main.js
+      |   |-- collections
+      |   |   |-- &lt;CollectionName&gt;.js
+      |   |-- models
+      |   |   |-- &lt;ModelName&gt;.js
+      |   |-- vendor
+      |   |   |-- backbone-&lt;*&gt;.js
+      |   |   |-- backbone.marionette-&lt;*&gt;.js
+      |   |   |-- underscore-&lt;*&gt;.js
+      |   |   |-- jquery-&lt;*&gt;.js
+      |   |   |-- tpl.js
+      |   |   |-- require-&lt;*&gt;.js
+      |   |-- viewports
+      |   |   |-- desktop
+      |   |       |-- application.js
+      |   |       |-- router.js
+      |   |-- views
+      |-- css
+      |   |-- bootstrap.css
+      |   |-- main.scss
+      |-- templates</code></pre></div>
+    </div>
+</div> </div>
+    <div id='footer'></div>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+---
+layout: default
+title: Handout
+category: handout
+---
+<div class='container pad-60'>
+    {% for post in site.posts %}
+        {% if post.category contains 'handout' %}
+            <div class="row handout">
+                <h3 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <p class="meta">Date: {{ post.date || date: "%d %B %Y" }}</p>
+                <div class="entry">
+                    {{ post.abstract | strip_html | truncatewords: 100 }}
+                </div>
+            </div>
+            <hr/>
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,0 +1,30 @@
+---
+layout: default
+title: Home
+---
+<div class="container">
+  <div id="intro">
+   <span class="logo"></span>
+   <hr/>
+   <p class="mission">Our mission is to develop San Diego's tech community into a hub for talented and forward thinking web developers.</p>
+   <hr/>
+  </div>
+  <div class="row">
+    {% for post in site.posts %}
+        <div class="span4">
+        <h2 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <p class="meta">
+            {% if post.category contains 'handout' %}
+                <i class="icon-file"></i>
+            {% else %}
+                <i class="icon-film"></i>
+            {% endif %}
+            Date: {{ post.date || date: "%d %B %Y" }}
+        </p>
+        <div class="entry">
+            {{ post.abstract | strip_html | truncatewords: 100 }}
+        </div>
+       </div>
+    {% endfor %}
+  </div>
+</div>
