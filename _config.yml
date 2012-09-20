@@ -4,6 +4,7 @@ description: JavascriptU Document Store
 auto: true
 # Makes pretty permalinks. See Jekyll docs for alternatives.
 permalink: pretty
+production_url : http://javascriptu.github.com/resources/
 #markdown: redcarpet2
 #redcarpet:
 #  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
