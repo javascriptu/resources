@@ -3,8 +3,7 @@ description: JavascriptU Document Store
 # Continue compiling even if there are errors. Keep it true, unless troubleshooting.
 auto: true
 # Makes pretty permalinks. See Jekyll docs for alternatives.
-permalink: pretty
-production_url : http://javascriptu.github.com/resources/
+permalink: resources/:categories/:year/:month/:day/:title/
 #markdown: redcarpet2
 #redcarpet:
 #  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
