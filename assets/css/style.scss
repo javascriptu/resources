@@ -101,13 +101,9 @@ body {
   }
 
   .navbar-inner {
-    background: #3b87ae;
+    background: $navbar-color;
   }
 }
-
-
-
-
 
 .highlight pre, pre {
   background-color:#f8f8f8;
