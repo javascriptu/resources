@@ -158,14 +158,27 @@ body{
   color: #af2f2f !important;
   font-weight:bold;
 }
+.backbone {
+  color: #416371 !important;
+  font-weight:bold;
+}
 
 .amd {
   color:#42a4ec !important;
   font-weight:bold;
 }
 
+.marionette {
+  color: #8c100b !important;
+  font-weight:bold;
+}
+
 .endSection body {
-  background-color:#ccc;
+  background-color:#ddd;
+}
+
+.intermission body {
+  background-color:#cce;
 }
 
 .pull-left {
@@ -226,3 +239,8 @@ cite {
   color: hsl(130, 100%, 25%);
 }
 
+li.center {
+  list-style-type: none;
+  text-align: center;
+  color: #af2f2f;
+}
