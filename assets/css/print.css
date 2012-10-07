@@ -1,0 +1,65 @@
+body {
+  background : none;
+  font-size : 10pt;
+  line-height : 1.5;
+  font-family : "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color : #000;
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  display : none;
+
+}
+
+.container {
+  padding: 20px !important;
+  margin: 0 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family : "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+}
+
+h1 {
+  font-size: 16px !important;
+}
+
+h2 {
+  font-size: 15px !important;
+}
+
+h3 {
+  font-size: 14px !important;
+}
+
+code {
+  font : .9em "Courier New", Monaco, Courier, monospace;
+}
+
+a img {
+  border : none;
+}
+
+p img.top {
+  margin-top : 0;
+}
+
+blockquote {
+  margin : 1.5em;
+  padding : 1em;
+  font-style : italic;
+  font-size : .9em;
+}
+
+a:link, a:visited {
+  background : transparent;
+  font-weight : 700;
+  text-decoration : underline;
+}
+
+a:link:after, a:visited:after {
+  content : " (" attr(href) ")";
+  font-size : 90%;
+}
