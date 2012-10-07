@@ -10,7 +10,13 @@ body {
 
 #header {
   display : none;
+}
 
+#printLogo {
+  margin-left : 20px;
+  max-width : 250px;
+  display : block;
+  margin-bottom : -10px;
 }
 
 .container {
@@ -32,6 +38,10 @@ h2 {
 
 h3 {
   font-size: 14px !important;
+}
+
+h3 a {
+  font-size: 12px;
 }
 
 code {
