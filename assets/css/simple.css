@@ -244,3 +244,12 @@ li.center {
   text-align: center;
   color: #af2f2f;
 }
+
+#header .navbar {
+  opacity: .1;
+}
+
+#header .navbar:hover {
+  opacity: 1;
+
+}
