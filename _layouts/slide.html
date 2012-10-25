@@ -2,15 +2,37 @@
 layout: default
 ---
 
-<div class="container" id="slide">
-    <div class="row">
-        <h1>{{ page.title }}</h1>
-        {% if page.category contains 'slide' %}
-            <i class="icon-file"></i>
-        {% else %}
-            <i class="icon-film"></i>
-        {% endif %}
-        <span class="date">{{ page.date | date_to_string }}</span>
-        <div class="entry">{{ content }}</div>
-    </div>
+<div class="container reveal" id="slide">
+    <!-- Used to fade in a background when a specific slide state is reached -->
+    <div class="state-background"></div>
+    <div class="slides">{{ content }}</div>
+    <!-- The navigational controls UI -->
+    <aside class="controls">
+        <a class="left" href="#">&#x25C4;</a>
+        <a class="right" href="#">&#x25BA;</a>
+        <a class="up" href="#">&#x25B2;</a>
+        <a class="down" href="#">&#x25BC;</a>
+    </aside>
+    <!-- Presentation progress bar -->
+    <div class="progress"><span></span></div>
+
 </div>
+
+<!-- For Slides -->
+<link rel="stylesheet" href="{{site.baseurl}}/assets/css/reveal.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/css/simple.css" id="theme">
+
+<script src="{{site.baseurl}}/js/vendor/head.min.js"></script>
+<script src="{{site.baseurl}}/js/vendor/reveal.min.js"></script>
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        theme: Reveal.getQueryHash().theme || 'simple', // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default' // default/cube/page/concave/linear(2d)
+    });
+</script>

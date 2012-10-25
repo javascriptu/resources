@@ -1,0 +1,840 @@
+---
+layout: slide
+title: Introduction To Backbone/Marionette
+category: slide
+abstract: The is a placeholder for our first slide deck. Donec ullamcorper nulla non metus auctor fringilla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+---
+<!--
+--
+--
+-- begin slides
+--
+--
+-->
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/JSULogo.png" class="logo">
+    <h3>Open Source Education</h3>
+    <br>
+    <p>Wifi Password : TinyFactory1043</p>
+</section>
+
+<section>
+    <h2>Writing <span style="color:blue">JavaScript</span><br>Web Applications</h2>
+</section>
+
+<section>
+    <h2>Establishing a Baseline</h2>
+    <br>
+    <h4>Find and solve a problem once</h4>
+    <h4>Implement it everywhere</h4>
+    <aside class="notes">An example is Hello World, we're going to write a Todo app</aside>
+</section>
+<section>
+    <h4>The classic</h4>
+    <br>
+    <h1 class="fit todo">Todo List</h1>
+    <br>
+    <h4>is an excellent choice</h4>
+</section>
+<section>
+    <h2>What makes up a<br><span class="todo">Todo List</span>?</h2>
+    <ol>
+        <li><span class="fragment">A Todo item</span></li>
+        <li><span class="fragment">A view into a list of items</span></li>
+        <li><span class="fragment">A way to enter new Todo items</span></li>
+        <li><span class="fragment">The ability to check off items</span></li>
+        <li><span class="fragment">A way to clear all completed items</span></li>
+    </ol>
+</section>
+<section>
+    <h2>Why a <span class="todo">Todo List</span>?</h2>
+</section>
+<section>
+    <h2>A <span class="todo">Todo List</span> requires</h2>
+    <ul>
+        <li>CRUD methods</li>
+        <li>Data Models</li>
+        <li>Collections/Lists</li>
+        <li>Views of different states</li>
+        <li>User interaction</li>
+        <li>Persistence</li>
+    </ul>
+</section>
+<section>
+    <h3>(Also)</h3>
+    <h2><a href="http://www.todomvc.com/" class="todo">www.todomvc.com</a></h2>
+</section>
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/BackboneTodoMVC.jpg">
+</section>
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/TodoMVC.jpg">
+</section>
+<section data-state="endSection">
+    <h2>16 frameworks</h2>
+    <h3>All implementing the same<br>concept with the same design</h3>
+    <br>
+    <h4>* Plus 30 more in the labs!</h4>
+    <aside class="notes">
+        Moving to intro next
+    </aside>
+</section>
+<section>
+    <h2>Our weapons</h2>
+    <ul>
+        <li><span class="amd">RequireJS</span></li>
+        <li><span class='backbone'>Backbone</span></li>
+        <li><span class='marionette'>Marionette</span></li>
+    </ul>
+</section>
+<section>
+    <h4><em>"In a world where bloated files<br>
+            and endless script tags have<br>caused society to crumble"</em>
+    </h4>
+    <br>
+    <h2><span class="amd">RequireJS</span></h2>
+    <br>
+    <h4>stands tall</h4>
+</section>
+<section>
+    <h2>How do you organize your code now?</h2>
+</section>
+<section>
+    <h2>Namespaces?</h2>
+<pre><code class="javascript">var yourblog = {
+  account  : {},
+  posts    : [],
+  comments : []
+}
+</code></pre>
+</section>
+<section>
+    <h2>Namespaces?</h2>
+<pre><code class="javascript">// yourblog.js
+var yourblog = {}</code></pre>
+<pre><code class="javascript">// account.js
+yourblog.account  = { stuff : {} }</code></pre>
+<pre><code class="javascript">// posts.js
+yourblog.posts    = { moreStuff : {} }</code></pre>
+<pre><code class="javascript">// comments.js
+yourblog.comments = { blech : {} }</code></pre>
+</section>
+<section>
+    <h2>Globally Accessible Modules?</h2>
+<pre><code>&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</section>
+<section>
+    <h2>Globally Accessible Modules?</h2>
+<pre><code>&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module8.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module9.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module10.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module11.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module12.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</section>
+<section>
+    <h2>Globally Accessible Modules?</h2>
+<pre><code>&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module12.js&quot;&gt;&lt;/script&gt; &lt;!-- want to use 6 in 12? --&gt;
+&lt;script src=&quot;Module6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module8.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module9.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module10.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module11.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</section>
+
+<section>
+    <h2>Globally Accessible Modules?</h2>
+<pre><code>&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module9.js&quot;&gt;&lt;/script&gt; &lt;!-- Did 9 depend on 12? --&gt;
+&lt;script src=&quot;Module5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module12.js&quot;&gt;&lt;/script&gt; &lt;!-- 12 --&gt;
+&lt;script src=&quot;Module6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module8.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module10.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module11.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</code></pre>
+</section>
+
+<section>
+    <h2>One massive file<br>and your memory?</h2>
+<pre><code>
+    // Ha, just kidding.
+    // Right?
+</code></pre>
+</section>
+
+<section>
+    <h4>It's a balance...</h4>
+    <h3>You are burdened the more modular your code gets</h3>
+</section>
+
+<section>
+    <br>
+    <h2>Mo' scripts<br><br>Mo' problems</h2>
+</section>
+
+<section>
+    <h1 class="amd">AMD</h1>
+    <h3>Asynchronous Module Definition</h3>
+</section>
+
+<section>
+    <h2>Asynchronous<br>Module<br>Definition</h2>
+    <ul>
+        <li><span class="amd">AMD</span> is <em>not</em> a library</li>
+        <li><span class="amd">AMD</span> is a specification</li>
+    </ul>
+</section>
+
+<section>
+    <h2>With <span class="amd">AMD</span> you can...</h2>
+    <ul>
+        <li>Define async modules</li>
+        <li>Define fine grained dependencies</li>
+        <li>Develop without a build step</li>
+        <li>And a lot more</li>
+    </ul>
+</section>
+
+<section>
+    <h2><span class="amd">AMD</span> at its core...</h2>
+    <br>
+    <blockquote>
+        The specification defines a single function "define" that is available as a free variable or a global variable.
+    </blockquote>
+</section>
+
+
+<section>
+    <h2><code>define()</code></h2>
+    <pre><code>define(id?, dependencies?, factory);</code></pre>
+    <br>
+    <h4>For example, <code>myModule.js</code></h4>
+<pre><code>define(['yourModule'], function(yourModule){
+   // You are in a module called 'myModule'
+   // That depends on and is provided 'yourModule'
+});</code></pre>
+</section>
+
+<section>
+    <h2><span class="amd">AMD</span> defines how to write modules</h2>
+    <h4><strong>Not</strong> how to load or use them</h4>
+</section>
+
+<section>
+    <h2>RequireJS</h2>
+    <h4><a href="http://requirejs.org">requirejs.org</a></h4>
+<pre><code>require(['dependency'],function(dependency) {
+           // And away we go!
+});</code></pre>
+</section>
+
+<section>
+    <h2>curl</h2>
+    <h4><a href="https://github.com/cujojs/curl">github.com/cujojs/curl</a></h4>
+<pre><code>curl(['js!nonAMD.js'])
+    .next(['dep1', 'dep2'], function (dep1, dep2) {
+    // execute this phase
+    })
+    .next(['dep3'])
+    .then(function () {
+    // Execute when everything is ready
+ });</code></pre>
+</section>
+
+<section>
+    <h2>Why use RequireJS?</h2>
+    <br>
+    <h3>Personal experience.<br>It's a trusty workhorse.</h3>
+    <br>
+    <h4><strong>Don't</strong> let that be your reason. Make your own.</h4>
+</section>
+
+<section>
+    <h2>Using RequireJS</h2>
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+    &lt;script <em>data-main</em>=&quot;<em>scripts/main.js</em>&quot;
+    src=&quot;scripts/vendor/require.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<section>
+    <h2><code>main.js</code></h2>
+<pre><code>require(['dep1','dep2'],function(dep1,dep2){
+   // And away we go!
+});
+</code></pre>
+</section>
+
+<section data-state="endSection">
+    <h2>There is more to <span class="amd">AMD</span><br>and RequireJS</h2>
+    <br>
+    <br>
+    <h4><span style="color:#004052">But you can add that to your homework</span></h4>
+</section>
+
+<section>
+    <h1>Backbone.js</h1>
+    <h2><a href="http://www.backbonejs.org/">backbonejs.org</a></h2>
+</section>
+
+<section>
+    <blockquote>
+        <p>Backbone.js gives structure to web applications by providing <strong>models</strong>
+           with key-value binding and custom events, <strong>collections</strong> with a rich API
+           of enumerable functions, <strong>views</strong> with declarative event handling, and
+           connects it all to your existing API over a RESTful JSON interface.</p>
+
+        <cite>documentcloud</cite>
+    </blockquote>
+</section>
+
+<section>
+    <h2 class="">BackboneJS</h2>
+    <br>
+    <ul>
+        <li>Backbone.Model</li>
+        <li>Backbone.Collection</li>
+        <li>Backbone.View</li>
+        <li>Backbone.Router</li>
+    </ul>
+</section>
+
+<section>
+    <h1>Backbone Models</h1>
+</section>
+
+<section>
+    <h2 class="">Your <span class="data">Data</span></h2>
+    <br>
+    <h3>Your <span class="data">Data</span> is gospel</h3>
+    <p>Without your <span class="data">data</span>, your app is nothing</p>
+    <br>
+    <p>Your <span class="data">data</span> = bits of <span class="data">stuff</span></p>
+</section>
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/example1.1.jpg">
+</section>
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/example1.2.jpg">
+</section>
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/example1.3.jpg">
+</section>
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/example1.4.jpg">
+</section>
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/example1.5.jpg">
+</section>
+
+<section>
+    <img src="{{site.baseurl}}/assets/img/slides/example1.6.jpg">
+</section>
+
+<section>
+    <h1><span class="data">Models</span><br>=<br><span class="data">Stuff</span></h1>
+</section>
+
+<section>
+    <h2>Remember</h2>
+    <h3>Your <span class="data">data</span> is gospel</h3>
+    <br>
+    <h3>How do you treat it now?</h3>
+</section>
+
+<section>
+    <blockquote>
+        Models are the heart of any JavaScript application, containing the
+        interactive data as well as a large part of the logic surrounding
+        it: conversions, validations, computed properties, and access control.
+    </blockquote>
+</section>
+
+<section>
+    <h2><code>extend()</code></h2>
+    <br>
+    <pre><code>Backbone.Model.extend(properties [, classProperties]);</code></pre>
+</section>
+
+<section>
+    <h2>Model Attributes</h2>
+    <br>
+<pre><code>var Person = Backbone.Model.extend({
+   fullName : function() {
+       return this.get('fName') + ' ' + this.get('lName');
+   }
+});
+
+var cartoonist = new Person();
+
+cartoonist.set('fName', 'Gary');
+cartoonist.set('lName', 'Larson');
+
+console.log(cartoonist.fullName());</code></pre>
+</section>
+
+<section>
+    <h1>Backbone Events</h1>
+</section>
+
+<section>
+    <h2>Event support</h2>
+    <br>
+    <pre><code>model.on(event, callback [, context])</code></pre>
+    <pre><code>model.off([event] [, callback] [, context])</code></pre>
+    <pre><code>model.trigger(event [, *args])</code></pre>
+</section>
+
+<section data-markdown>
+    ## Built-in Events
+    <ul style="width:80%">
+        <li><code>add</code> <span class="pull-right">(model, collection)</span></li>
+        <li><code>remove</code> <span class="pull-right">(model, collection)</span></li>
+        <li><code>reset</code> <span class="pull-right">(collection)</span></li>
+        <li><code>change</code> <span class="pull-right">(model)</span></li>
+        <li><code>change:[attribute]</code> <span class="pull-right">(model)</span></li>
+        <li><code>destroy</code> <span class="pull-right">(model, collection)</span></li>
+        <li><code>sync</code> <span class="pull-right">(model, collection)</span></li>
+        <li><code>error</code> <span class="pull-right">(model, collection)</span></li>
+        <li><code>route:[name]</code> <span class="pull-right">(router)</span></li>
+        <li><code>all</code></li>
+    </ul>
+</section>
+
+<section data-state="endSection">
+    <h2>Backbone Sync</h2>
+    <h3>A method convention for interacting with <span class="data">data</span> storage</h3>
+<pre><code>
+    model.save()
+    model.fetch()
+    model.destroy()
+    // all delegate to
+    model.sync();
+</code></pre>
+</section>
+
+<section>
+    <h1>Backbone Collections</h1>
+</section>
+
+<section>
+    <h1><span class="collections">Collections</span><br>=</h1>
+    <h2>lists of <span class="data">Stuff</span></h2>
+</section>
+
+<section>
+    <h2><span class="collections">Collections</span></h2>
+    <h3>Simple syntactic sugar<br>around managing <span class="data">data</span></h3>
+</section>
+
+<section>
+    <h2>Syntax</h2>
+    <br>
+<pre><code class="javascript">var User = Backbone.Model.extend({});
+  var UserList = Backbone.Collection.extend({
+  model : User
+});</code></pre>
+    <br>
+    <p>Very same <code>extend()</code></p>
+</section>
+
+<section>
+    <h2>Example benefit</h2>
+    <h3><code>create()</code></h3>
+<pre><code>var users = new UserList();
+
+users.create({ name : 'Jack' });
+</code></pre>
+</section>
+
+<section>
+    <h2>Behind the scenes</h2>
+    <br>
+    <ol>
+        <li>Passed raw data to Collection::create()</li>
+        <li>Collection passed that to our model</li>
+        <li>Our model was created with the passed data</li>
+        <li>Automatically synced with the server</li>
+        <li>Our model was added to our collection</li>
+    </ol>
+    <br>
+    <br>
+    <h4>In one line</h4>
+</section>
+
+<section data-state='endSection'>
+    <h3 class="collections">Collections</h3>
+    <br>
+    <p>Just simple conventions around simple ideas.</p>
+    <br>
+    <p>Organizing your data so you don't have to.</p>
+</section>
+
+<section>
+    <h1>Backbone Views</h1>
+</section>
+
+<section>
+    <h2>Very Lightweight UI components</h2>
+    <br>
+    <p>Mostly convention and convenience, allowing you to move more quickly</p>
+</section>
+
+<section>
+    <h2>Creating a View</h2>
+    <br>
+    <pre><code>Backbone.View.extend(properties [, classProperties]);</code></pre>
+    <br>
+    <p>Still the same <code>extend()</code></p>
+</section>
+
+<section>
+    <h2>Special Properties</h2>
+    <ul style="width:70%">
+        <li><code>id</code><span class="pull-right">An element id</span></li>
+        <li><code>className</code><span class="pull-right"> Element classes</span></li>
+        <li><code>tagName</code> <span class="pull-right">The tag to use</span></li>
+        <li><code>attributes</code> <span class="pull-right">Element attributes</span></li>
+        <li><code>el</code> <span class="pull-right">An actual element</span></li>
+        <li><code>events</code><span class="pull-right"> Events to listen to</span></li>
+    </ul>
+</section>
+
+<section>
+    <h2><code>View.render()</code></h2>
+
+    <br>
+    <p>The heart of any view is its <code>render()</code> method which, by default, does nothing</p>
+    <br>
+    <p>Yes, nothing.</p>
+</section>
+
+<section>
+    <h2>The sugar</h2>
+    <br>
+<pre><code>this.el; // The dom element you have
+this.$el; // a cached jQuery instance of your el
+this.$(); // a jQuery method scoped to your el
+</code></pre>
+</section>
+
+<section>
+    <h2>View Events</h2>
+    <br>
+<pre><code>var MyView = Backbone.View.extend({
+    events : {
+    'click .btn' : 'onButtonClick'
+    },
+    onButtonClick : function(evt) {
+    // automatically called
+    }
+});
+</code></pre>
+</section>
+
+<section>
+    <h2>Wiring it all together</h2>
+    <br>
+    <h3>Listening and acting on events</h3>
+    <br>
+<pre><code>var MyView = Backbone.View.extend({
+    initialize : function() {
+    this.collection.on('all', this.render, this);
+    },
+    render : function() {
+    // Do some rendering magic
+    }
+});
+</code></pre>
+    <p>Voila, a cheap re-render when your collection changes.</p>
+</section>
+
+<section>
+    <h1>Backbone is not magic</h1>
+</section>
+
+<section>
+    <h2>You don't do everything "in backbone"</h2>
+    <br>
+    <h3>It is just another tool</h3>
+</section>
+
+<section>
+    <h3>There <em>is</em> a cost</h3>
+    <br>
+    <h3>You will need to find new solutions and how to recognize new patterns</h3>
+    <br>
+    <p>But you need <em>something</em>.
+</section>
+
+<section data-state="intermission">
+    <br><br><br><br>
+    <h2>And Backbone's<br>a good start</h2>
+</section>
+
+<!-- -------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+--                Start Marionette Slides
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-- ---------------------------------------------------------
+-->
+
+<section>
+    <h1><span class='backbone'>Backbone</span> is just half an answer.</h1>
+</section>
+
+<section>
+    <h1>What is <span class='backbone'>backbone</span> missing?</h1>
+</section>
+
+<section>
+    <h2><span class='backbone'>Backbone</span> is a <strong>tool</strong>, not a solution.</h2>
+</section>
+
+<section>
+    <blockquote>
+        <h3 style="font-style:normal;text-align: center;"><strong>Embrace</strong> dependencies</h3>
+        <cite>Paul Irish</cite>
+    </blockquote>
+</section>
+
+<section>
+    <h2>Your toolbox is the key to your success.</h2>
+</section>
+
+<section>
+    <h2><span class='marionette'>Marionette</span> is one of your tools</h2>
+    <h4><a href="http://marionettejs.com">marionettejs.com</a></h4>
+</section>
+
+<section>
+    <h2><span class='marionette'>Marionette</span> is the start of your application structure.</h2>
+</section>
+
+<section>
+    <h2>What does <span class='marionette'>Marionette</span> actually give us?</h2>
+</section>
+
+<section>
+    <h3><span class='marionette'>Marionette</span>.Application</h3>
+    <br>
+    <p>An application kickoff point.</p>
+    <br>
+<pre><code>var OurApp = new Marionette.Application();
+OurApp.start();
+OurApp.aRegion.show(view);</code></pre>
+</section>
+
+<section>
+    <h3><span class='marionette'>Marionette</span>.EventAggregator</h3>
+    <br>
+    <p>A baked in Pub/Sub channel.</p>
+    <br>
+<pre><code class="javascript">OurApp.vent.on('some:event',fn);
+OurApp.vent.trigger('some:event');</code></pre>
+</section>
+
+<section>
+    <h3><span class='marionette'>Marionette</span>.EventBinder</h3>
+    <br>
+    <p>Your event management system. <em>Critical</em> for memory management.</p>
+    <br>
+<pre><code class="javascript">var binding = YourView.bindTo(object, 'event', fn);
+YourView.unbindFrom(binding);
+YourView.unbindAll();</code></pre>
+</section>
+
+<section>
+    <h3>Regions & Region Managers</h3>
+    <h4><a href="https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.region.md">marionette.region</a></h4>
+    <p>Region managers provide a consistent way to manage your views in your application. They automate the
+       opening, closing, and cleanup of views.</p>
+    <br>
+<pre><code class="javascript">view.region1.show(subView);
+view.region1.show(secondSubView);</code></pre>
+</section>
+
+<section>
+    <h3>Serialization of <br>Models & Collections</h3>
+    <br>
+    <p>Marionette views automatically delegate to the <code>serializeData</code> method
+       before submitting to your templates</p>
+</section>
+
+<section>
+    <h3>Automatic View Cleanup</h3>
+    <br>
+    <p>Marionette's <code>close()</code> method performs the bulk of your cleanup for you.</p>
+    <br>
+    <p>Using EventBinder allows your views to keep track of listened events to be cleaned up at the end.</p>
+</section>
+
+<section>
+    <h2>Sensible defaults</h2>
+    <br>
+    <p>Marionette lets you change defaults easily but provides some lightly opinionated defaults to get you started.</p>
+    <br>
+    <ul>
+        <li>Underscore templates</li>
+        <li>Dom-based templates</li>
+        <li>Data serialization delegating to <code>toJSON()</code></li>
+        <li>and more</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Vastly Reduced Boilerplate</h2>
+    <p>The included views are intended for you to extend and get you off to a killer start.</p>
+</section>
+
+<section>
+    <h2><span class='marionette'>Marionette</span>.View</h2>
+    <br>
+    <p>A super-enhanced Backbone View.</p>
+    <br>
+    <p>EventBinder, Backbone Model/Collection binding, UI bindings, View triggers, Data Serialization, Template support.</p>
+</section>
+
+<section>
+    <h2><span class='marionette'>Marionette</span>.ItemView</h2>
+    <br>
+    <p>A View automating the rendering of Models and Collections into templates.</p>
+    <br>
+<pre><code class="javascript">var OurView = Marionette.ItemView.extend({
+    ui : {
+        anElement : '.selector'
+    }
+});</code></pre>
+</section>
+
+<section>
+    <h2 style="font-size:180%"><span class='marionette'>Marionette</span>.CollectionView</h2>
+    <br>
+    <p>A View that automates rendering Collections and child ItemViews.</p>
+    <br>
+<pre><code class="javascript">var OurView = Marionette.CollectionView.extend({
+    itemView : SomeView,
+    emptyView : anEmptyView
+});</code></pre>
+</section>
+
+<section>
+    <h2 style="font-size:190%"><span class='marionette'>Marionette</span>.CompositeView</h2>
+    <br>
+    <p>A useful for complex Collections and Tree-like sets of data.</p>
+    <br>
+    <p>Recursive by default.</p>
+</section>
+
+<section>
+    <h2><span class='marionette'>Marionette</span>.Layout</h2>
+    <br>
+    <p>An ItemView extended with region managers.</p>
+    <br>
+<pre><code class="javascript">var OurView = Marionette.Layout.extend({
+    regions : {
+    main : '.main',
+    menu : '.menu'
+    }
+});
+
+ourView.main.show(subView);
+</code></pre>
+</section>
+
+<section>
+    <br><br>
+    <h3>Regions & Layouts allow you to dynamically compose your application's visuals at <strong>runtime</strong></h3>
+</section>
+
+<section>
+    <h2>Extra view sugar</h2>
+    <h4>Convenience methods</h4>
+    <ul>
+        <li>beforeRender</li>
+        <li>onRender</li>
+        <li>beforeClose</li>
+        <li>onClose</li>
+        <li>onShow</li>
+        <li>etc...</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Extra view sugar</h2>
+    <h4>Convenience events</h4>
+    <ul>
+        <li>"collection:before:render"</li>
+        <li>"item:before:render"</li>
+        <li>"item:before:close"</li>
+        <li>"item:rendered"</li>
+        <li>"item:closed"</li>
+        <li>and more</li>
+    </ul>
+</section>
+
+<section data-state='intermission'>
+    <h1>Let's get started</h1>
+</section>
+<!--
+--
+--
+-- End slides
+--
+--
+-->

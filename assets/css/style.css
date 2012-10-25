@@ -36,13 +36,13 @@ body {
     line-height: 1.4em;
     max-width: 650px; }
 
-#handout, #slide, #blog {
+#handout, #blog {
   padding: 60px; }
-  #handout .entry, #slide .entry, #blog .entry {
+  #handout .entry, #blog .entry {
     border-top: 1px solid #666;
     margin-top: 10px;
     padding-top: 20px; }
-  #handout h3, #slide h3, #blog h3 {
+  #handout h3, #blog h3 {
     font-size: 20px; }
 
 .social-list {
@@ -99,3 +99,6 @@ blockquote2 {
   padding-left: 11px;
   color: #555;
   margin: 14px 0; }
+
+#printLogo {
+  display: none; }
